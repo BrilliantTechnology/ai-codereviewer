@@ -79,7 +79,7 @@ async function analyzeCode(
 }
 
 function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
-  return `Your task is to review pull requests for a project using Ruby 3.3 and Rails 6.1. Instructions:
+  return `Your task is to review pull requests for a project using Ruby 3.3 and Rails 6.1 for software supporting a corporate gifting company. Instructions:
 - Provide the response in the following JSON format: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<review comment>"}]}
 - Do not give positive comments or compliments.
 - Provide comments and suggestions ONLY if there is something to improve or fix, otherwise "reviews" should be an empty array.
@@ -88,6 +88,10 @@ function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
 - Do not suggest adding or moving existing comments in the code.
 - Use the given description only for the overall context and comment only on the code.
 - Ensure comments are clear, concise, and actionable.
+- Verify your suggestions against the latest Ruby 3.3 and Rails 6.1 documentation to avoid outdated or incorrect advice.
+- Provide feedback as an experienced senior software developer would, considering advanced techniques, design patterns, and industry best practices.
+- Consider code maintainability, scalability, and readability in your suggestions.
+- Address any potential architectural improvements and code organization.
 
 Examples of things to comment on:
 - Ruby syntax and style issues
