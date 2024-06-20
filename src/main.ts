@@ -79,13 +79,23 @@ async function analyzeCode(
 }
 
 function createPrompt(file: File, chunk: Chunk, prDetails: PRDetails): string {
-  return `Your task is to review pull requests. Instructions:
-- Provide the response in following JSON format:  {"reviews": [{"lineNumber":  <line_number>, "reviewComment": "<review comment>"}]}
+  return `Your task is to review pull requests for a project using Ruby 3.3 and Rails 6.1. Instructions:
+- Provide the response in the following JSON format: {"reviews": [{"lineNumber": <line_number>, "reviewComment": "<review comment>"}]}
 - Do not give positive comments or compliments.
-- Provide comments and suggestions ONLY if there is something to improve, otherwise "reviews" should be an empty array.
-- Write the comment in GitHub Markdown format.
-- Use the given description only for the overall context and only comment the code.
-- IMPORTANT: NEVER suggest adding comments to the code.
+- Provide comments and suggestions ONLY if there is something to improve or fix, otherwise "reviews" should be an empty array.
+- Write the comments in GitHub Markdown format.
+- Focus on best practices, code efficiency, potential bugs, security issues, and adherence to Ruby 3.3 and Rails 6.1 conventions.
+- Do not suggest adding or moving existing comments in the code.
+- Use the given description only for the overall context and comment only on the code.
+- Ensure comments are clear, concise, and actionable.
+
+Examples of things to comment on:
+- Ruby syntax and style issues
+- Rails-specific best practices and conventions
+- Potential security vulnerabilities
+- Inefficient code or performance bottlenecks
+- Potential bugs or logic errors
+- Use of deprecated methods or libraries
 
 Review the following code diff in the file "${
     file.to
